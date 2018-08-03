@@ -13,6 +13,7 @@ use warnings;
 use Modern::Perl;
 use DateTime;
 use File::Path qw(make_path);
+use File::Copy::Recursive qw(fcopy rcopy dircopy fmove rmove dirmove);
 
 
 my $filename = "README.md";
@@ -74,5 +75,9 @@ my $path_to_website = $dir."index.md";
 open(my $f_out, '>', $path_to_website) or die "Could not open file '$path_to_website' $!";
 print $f_out @lines;
 
+my $current_img_dir = "img/";
+my $new_img_dir = "$ENV{'HOME'}/nikola/nebbia/files/${title}_img/";
+
+dircopy($current_img_dir,$new_img_dir);
 
 
