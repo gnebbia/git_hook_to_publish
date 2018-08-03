@@ -10,6 +10,7 @@
 #
 use strict;
 use warnings;
+use utf8;
 use Modern::Perl;
 use DateTime;
 use File::Path qw(make_path);
@@ -71,8 +72,8 @@ if ($@) {
 
 
 my $path_to_website = $dir."index.md";
-
-open(my $f_out, '>', $path_to_website) or die "Could not open file '$path_to_website' $!";
+binmode STDOUT, ":utf8";
+open(my $f_out, ">:encoding(utf-8)", $path_to_website) or die "Could not open file '$path_to_website' $!";
 print $f_out @lines;
 
 my $current_img_dir = "img/";
